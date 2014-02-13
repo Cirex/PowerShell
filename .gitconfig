@@ -1,0 +1,23 @@
+[core]
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  whitespace = trailing-space,space-before-tab,indent-with-non-tab
+  autocrlf = false
+
+[color]
+  ui = auto
+
+[apply]
+  whitespace = fix
+
+[alias]
+  amend = commit --amend
+
+[push]
+  default = simple
+
+[url "git://github.com/"]
+  insteadOf = "github:"
+
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
