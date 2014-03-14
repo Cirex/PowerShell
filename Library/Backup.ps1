@@ -39,6 +39,12 @@ function Restore-Profile
   Link $Profile $POWERSHELL\Profile.ps1
 }
 
+function Restore-Directories
+{
+  Link /J $APPLICATIONS $BACKUP\Applications
+  Link /J $PROJECTS $BACKUP\Projects
+}
+
 function Backup
 {
   Backup-Fonts
@@ -49,4 +55,5 @@ function Restore
   Restore-Fonts
   Restore-Profile
   Restore-Wallpaper
+  Restore-Directories
 }

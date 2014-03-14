@@ -1,12 +1,24 @@
 ############################
 # Configuration
 ############################
-$ENV:EDITOR     = 'notepad'
-$ENV:GIT_EDITOR = $ENV:EDITOR
-$ENV:BROWSER    = 'iexplore'
+$BACKUP       = 'D:\Backup'
+$POWERSHELL   = 'D:\Backup\PowerShell'
+$ENVIRONMENT  = 'D:\Environment'
+$APPLICATIONS = 'D:\Applications'
+$PROJECTS     = 'D:\Projects'
 
 $PERSISTENT_SESSION = 1
 $HISTORY_SIZE = 4096
+
+$ENV:TERM       = 'msys'
+$ENV:BROWSER    = 'chrome'
+$ENV:EDITOR     = 'intype'
+$ENV:GIT_EDITOR = $ENV:EDITOR
+
+############################
+# Vagrant
+############################
+$ENV:VAGRANT_DEFAULT_PROVIDER = 'hyperv'
 
 ############################
 # Git
@@ -22,41 +34,31 @@ $ENV:GIT_COMMITTER_EMAIL = $ENV:GIT_AUTHOR_EMAIL
 $GITHUB_API_TOKEN = 'GITHUB_API_TOKEN'
 $GITHUB_USER_NAME = 'Cirex'
 
-############################
-# Paths
-############################
-$BACKUP      = 'D:\Backup'
-$POWERSHELL  = 'D:\Backup\PowerShell'
-$ENVIRONMENT = 'D:\Environment'
-
 set-variable -Name HOME -Value ($BACKUP) -Force
 (get-psprovider FileSystem).Home = $BACKUP
 
-. $POWERSHELL\Library\Git.ps1
-. $POWERSHELL\Library\Paths.ps1
-. $POWERSHELL\Library\Backup.ps1
-. $POWERSHELL\Library\Prompt.ps1
-. $POWERSHELL\Library\GitHub.ps1
 . $POWERSHELL\Library\Aliases.ps1
-. $POWERSHELL\Library\History.ps1
+. $POWERSHELL\Library\Backup.ps1
 . $POWERSHELL\Library\Functions.ps1
+. $POWERSHELL\Library\Git.ps1
+. $POWERSHELL\Library\GitHub.ps1
+. $POWERSHELL\Library\History.ps1
+. $POWERSHELL\Library\Paths.ps1
+. $POWERSHELL\Library\Prompt.ps1
+. $POWERSHELL\Library\VisualStudio.ps1
 
 Set-VisualStudio 2013
 
-Append-Path $ENVIRONMENT\Git\Cmd
-Append-Path $ENVIRONMENT\Git\Bin
-Append-Path $ENVIRONMENT\Ruby\Bin
-Append-Path $ENVIRONMENT\Gems\Bin
-Append-Path $ENVIRONMENT\MySQL\Bin
-Append-Path $ENVIRONMENT\FFmpeg\Bin
-Append-Path $ENVIRONMENT\Nginx
-Append-Path $ENVIRONMENT\Redis
-Append-Path $ENVIRONMENT\NodeJS
-Append-Path $ENVIRONMENT\Python
 Append-Path $ENVIRONMENT\Android
-Append-Path $ENVIRONMENT\MongoDB
+Append-Path $ENVIRONMENT\FFmpeg\Bin
+Append-Path $ENVIRONMENT\Gems\Bin
+Append-Path $ENVIRONMENT\Git\Cmd
 Append-Path $ENVIRONMENT\ImageMagick
-Append-Path $ENVIRONMENT\Utilities
+Append-Path $ENVIRONMENT\MongoDB
+Append-Path $ENVIRONMENT\NodeJS
+Append-Path $ENVIRONMENT\Redis
+Append-Path $ENVIRONMENT\Ruby\Bin
+Append-Path $ENVIRONMENT\Tools
 
 Append-Path-Extension 'rb'
 Append-Path-Extension 'rbw'

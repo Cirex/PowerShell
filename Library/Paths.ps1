@@ -1,11 +1,13 @@
-function Append-Path([string]$Path) {
+function Append-Path([string]$Path)
+{
   if ((Test-Path $Path) -and (-not $ENV:PATH.Contains($Path)))
   {
     $ENV:PATH += ";$Path"
   }
 }
 
-function Append-Path-Extension([string]$Extension) {
+function Append-Path-Extension([string]$Extension)
+{
   if (-not $ENV:PATHEXT.Contains($Extension))
   {
     $ENV:PATHEXT += ";.$Extension"

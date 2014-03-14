@@ -9,6 +9,30 @@ function Git-Branch
   }
 }
 
+function Git-Status
+{
+  $Status = @{
+    Modified = 0
+    Added    = 0
+    Deleted  = 0
+    Renamed  = 0
+  }
+
+  $Differences = git diff-index HEAD --name-status
+  foreach ($Difference in $Differences)
+  {
+    switch ($Difference)
+    {
+      'M' { $Status['Modified']++ }
+      'A' { $Status['Added']++ }
+      'D' { $Status['Deleted']++ }
+      'R' { $Status['Renamed']++ }
+    }
+  }
+
+  return $Status
+}
+
 function Git-Repository
 {
   if (Test-Path '.git')

@@ -1,11 +1,8 @@
-Set-Alias Drive Set-Location-Backup
-function Set-Location-Backup
+Set-Alias E Start-Explorer
+function Start-Explorer([string]$Path = '.')
 {
-  if (($BACKUP -ne $Null) -and (Test-Path $BACKUP))
-  {
-    pushd
-    cd $BACKUP
-  }
+  $Path = Resolve-Path $Path
+  Explorer $Path
 }
 
 Set-Alias Hosts Edit-Hosts
@@ -21,9 +18,10 @@ function Edit-Profile
 }
 
 Set-Alias Edit Edit-File
-function Edit-File([string]$Path)
+function Edit-File([string]$File)
 {
-  Start-Process -FilePath $ENV:EDITOR -ArgumentList $Path
+  $File = Resolve-Path $File
+  Start-Process -FilePath $ENV:EDITOR -ArgumentList $File
 }
 
 function Set-Title([string]$Title)
@@ -39,47 +37,41 @@ function Time-Stamp
   return [System.DateTime]::Now.ToString('yyyy.MM.dd hh:mm:ss')
 }
 
-$VISUAL_STUDIO = @{
-  2013 = $ENV:VS120COMNTOOLS;
-  2012 = $ENV:VS110COMNTOOLS;
-  2011 = $ENV:VS100COMNTOOLS;
-}
-
-function Set-VisualStudio
-{
-  param(
-    [Parameter(Mandatory, HelpMessage = 'Enter Visual Studio version as 2010, 2012, or 2013')]
-    [ValidateSet(2010, 2012, 2013)]
-    [int]$Version,
-
-    [Parameter(HelpMessage = 'Enter architecture as x86, or x86_amd64')]
-    [ValidateSet('x86', 'x86_amd64')]
-    [string]$Architecture = 'x86'
-  )
-
-  $Directory = $VISUAL_STUDIO[$Version]
-  $BatchFile = Join-Path $Directory '..\..\VC\vcvarsall.bat'
-
-  if ((Test-Path $BatchFile) -eq $False)
-  {
-    Write-Host "Visual Studio $Version not found."
-    return
-  }
-
-  Invoke-BatchFile -Path $BatchFile -Arguments $Architecture
-}
-
 function Invoke-BatchFile([string]$Path, [string]$Arguments)
 {
   $TempFile = [IO.Path]::GetTempFileName()
   cmd.exe /c " `"$Path`" $Arguments && set > `"$TempFile`" "
 
   Get-Content $TempFile | Foreach-Object {
-    if ($_ -Match "^(.*?)=(.*)$")
+    if ($_ -Match '^(.*?)=(.*)$')
     {
       Set-Item -Path "ENV:\$($Matches[1])" -Value $Matches[2] -Force
     }
   }
 
   Remove-Item $TempFile
+}
+
+Set-Alias ?: Invoke-Ternary
+filter Invoke-Ternary([scriptblock]$Condition, [scriptblock]$T, [scriptblock]$F)
+{
+  if (& $Condition) {& $T} else {& $F}
+}
+
+function Ask([string]$Question)
+{
+  $Choice = $Null
+  while ($Choice -notmatch 'y|yes|n|no')
+  {
+    $Choice = Read-Host "$Question (Y/N)"
+  }
+
+  ?: {$Choice -match 'y|yes'} {$True} {$False}
+}
+
+function Write-FileHash
+{
+  $PSO = Get-FileHash $Args
+  $File = $PSO.Path, $PSO.Algorithm.ToLower() -Join '.'
+  $PSO.Hash | Out-File $File -NoClobber
 }
