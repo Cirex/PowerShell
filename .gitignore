@@ -1,11 +1,17 @@
+# Personal
+.heroku
+.travis
+.ssh/*
+!.ssh/config
+Keys/
+Puppet/
+.irb_history
+History.xml
+
+# Ruby
 Gemfile.lock
 *.gem
 /.gem/
-
-.ssh
-!.ssh/config
-Keys/
-
 .bundle
 
 .yardoc/
@@ -13,17 +19,26 @@ _yardoc/
 doc/
 rdoc/
 
+# Vagrant
+.vagrant.d
+.vagrant
+
+# Project files
 *.sublime-project
 *.sublime-workspace
+*.tmproj
+*.tmproject
 
+# Operating systems
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
+.Spotlight-V100
+.Trashes
 $RECYCLE.BIN/
-
-.irb_history
-History.xml
+._*
+*~
 
 # Android
 *.apk
@@ -45,4 +60,7 @@ Release/
 x64/
 build/
 bld/
-obj/
+
+# Cloud9
+.c9revisions
+.c9
