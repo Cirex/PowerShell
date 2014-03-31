@@ -2,7 +2,10 @@ Set-Alias E Start-Explorer
 function Start-Explorer([string]$Path = '.')
 {
   $Path = Resolve-Path $Path
-  Explorer $Path
+  if ($Path)
+  {
+    Explorer $Path
+  }
 }
 
 Set-Alias Hosts Edit-Hosts
@@ -21,7 +24,10 @@ Set-Alias Edit Edit-File
 function Edit-File([string]$File)
 {
   $File = Resolve-Path $File
-  Start-Process -FilePath $ENV:EDITOR -ArgumentList $File
+  if ($File)
+  {
+    Start-Process -FilePath $ENV:EDITOR -ArgumentList $File
+  }
 }
 
 function Set-Title([string]$Title)
@@ -66,7 +72,7 @@ function Ask([string]$Question)
     $Choice = Read-Host "$Question (Y/N)"
   }
 
-  ?: {$Choice -match 'y|yes'} {$True} {$False}
+  return $Choice -match 'y|yes'
 }
 
 function Write-FileHash
