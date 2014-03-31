@@ -21,7 +21,7 @@ function Git-Status
   $Differences = git diff-index HEAD --name-status
   foreach ($Difference in $Differences)
   {
-    switch ($Difference)
+    switch ($Difference[0])
     {
       'M' { $Status['Modified']++ }
       'A' { $Status['Added']++ }
