@@ -10,7 +10,6 @@ $PROJECTS     = 'D:\Projects'
 $PERSISTENT_SESSION = 1
 $HISTORY_SIZE = 4096
 
-$ENV:TERM       = 'msys'
 $ENV:BROWSER    = 'chrome'
 $ENV:EDITOR     = 'intype'
 $ENV:GIT_EDITOR = $ENV:EDITOR
