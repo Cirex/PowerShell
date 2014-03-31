@@ -21,7 +21,7 @@ function Backup-Fonts
   $Fonts = Dir $ENV:WINDIR\Fonts -Include @('*.ttf', '*.otf') -Rec
   foreach ($Font in $Fonts)
   {
-    Copy-Item -Path $Font -Destination "$BACKUP\Fonts" -Force
+    Copy-Item -Path $Font -Destination $BACKUP\Fonts -Force
   }
 }
 
@@ -45,6 +45,15 @@ function Restore-Directories
   Link /J $PROJECTS $BACKUP\Projects
 }
 
+function Restore-Registry
+{
+  $Entries = Dir $BACKUP\Settings\Windows\Registry
+  foreach ($Entry in $Entries)
+  {
+    RegEdit /S $Entry
+  }
+}
+
 function Backup
 {
   Backup-Fonts
@@ -56,4 +65,5 @@ function Restore
   Restore-Profile
   Restore-Wallpaper
   Restore-Directories
+  Restore-Registry
 }
