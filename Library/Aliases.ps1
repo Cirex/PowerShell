@@ -1,4 +1,4 @@
-${function:up} = { cd .. }
+﻿${function:up} = { cd .. }
 ${function:...} = { cd ..\.. }
 ${function:....} = { cd ..\..\.. }
 ${function:.....} = { cd ..\..\..\.. }
@@ -72,4 +72,9 @@ function Set-Location-Project([string]$Project)
     }
   }
   Write-Host "Project $Project not found." -ForeGroundColor Red
+}
+
+function Mount-Encypted-Backup
+{
+  EncFS $BACKUP\Encrypted Z: -- --idle=5 -o volname="Encrypted Volume"
 }
