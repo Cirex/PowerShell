@@ -66,18 +66,17 @@ filter Invoke-Ternary([scriptblock]$Condition, [scriptblock]$T, [scriptblock]$F)
 
 function Ask([string]$Question)
 {
-  $Choice = $Null
-  while ($Choice -notmatch 'y|yes|n|no')
+  while ($Choice -NotMatch 'y|yes|n|no')
   {
     $Choice = Read-Host "$Question (Y/N)"
   }
 
-  return $Choice -match 'y|yes'
+  return $Choice -Match 'y|yes'
 }
 
 function Write-FileHash
 {
-  $PSO = Get-FileHash $Args
+  $PSO = Get-FileHash @Args
   $File = $PSO.Path, $PSO.Algorithm.ToLower() -Join '.'
   $PSO.Hash | Out-File $File -NoClobber
 }
