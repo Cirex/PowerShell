@@ -1,4 +1,4 @@
-function Prompt
+﻿function Prompt
 {
   if (Git-Repository)
   {

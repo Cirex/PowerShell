@@ -1,4 +1,4 @@
-Set-Alias E Start-Explorer
+﻿Set-Alias E Start-Explorer
 function Start-Explorer([string]$Path = '.')
 {
   $Path = Resolve-Path $Path

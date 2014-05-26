@@ -1,4 +1,4 @@
-function Append-Path([string]$Path)
+﻿function Append-Path([string]$Path)
 {
   if ((Test-Path $Path) -and (-not $ENV:PATH.Contains($Path)))
   {

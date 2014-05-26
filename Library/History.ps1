@@ -1,4 +1,4 @@
-$HISTORY_FILE = "$POWERSHELL\History.xml"
+﻿$HISTORY_FILE = "$POWERSHELL\History.xml"
 
 if ($PERSISTENT_SESSION)
 {

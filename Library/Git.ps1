@@ -1,4 +1,4 @@
-function Git-Branch
+﻿function Git-Branch
 {
   $Reference = git symbolic-ref HEAD
 
