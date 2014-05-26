@@ -5,16 +5,16 @@ ${function:.....} = { cd ..\..\..\.. }
 ${function:......} = { cd ..\..\..\..\.. }
 ${function:.......} = { cd ..\..\..\..\..\.. }
 
-# Portable applications
-Set-Alias chrome  "$APPLICATIONS\Chrome\chrome.exe"
-Set-Alias intype  "$APPLICATIONS\Intype\intype.exe"
+Set-Alias grep       $ENVIRONMENT\Git\Bin\grep.exe
+Set-Alias touch      $ENVIRONMENT\Git\Bin\touch.exe
+Set-Alias gpg        $ENVIRONMENT\Git\Bin\gpg.exe
+Set-Alias scp        $ENVIRONMENT\Git\Bin\scp.exe
+Set-Alias ssh        $ENVIRONMENT\Git\Bin\ssh.exe
+Set-Alias ssh-keygen $ENVIRONMENT\Git\Bin\ssh-keygen.exe
+Set-Alias openssl    $ENVIRONMENT\Git\Bin\openssl.exe
 
-Set-Alias grep       "$ENVIRONMENT\Git\Bin\grep.exe"
-Set-Alias touch      "$ENVIRONMENT\Git\Bin\touch.exe"
-Set-Alias scp        "$ENVIRONMENT\Git\Bin\scp.exe"
-Set-Alias ssh        "$ENVIRONMENT\Git\Bin\ssh.exe"
-Set-Alias ssh-keygen "$ENVIRONMENT\Git\Bin\ssh-keygen.exe"
-Set-Alias openssl    "$ENVIRONMENT\Git\Bin\openssl.exe"
+Set-Alias atom $ENV:EDITOR
+Set-Alias vlc  $ENV:MEDIA_PLAYER
 
 Set-Alias Link mklink
 function mklink
