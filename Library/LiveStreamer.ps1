@@ -17,7 +17,7 @@ function MLG
 {
   Param
   (
-    [Parameter(Mandatory, HelpMessage = 'http://tv.majorleaguegaming.com/show/<source>')]
+    [Parameter(Mandatory, HelpMessage = 'http://tv.majorleaguegaming.com/channel/<source>')]
     [string]$Source,
 
     [Parameter(HelpMessage = 'Enter quality as 1080p, 720p, or 480p')]
@@ -25,7 +25,7 @@ function MLG
     [string]$Quality = '1080p'
   )
 
-  livestreamer http://tv.majorleaguegaming.com/show/$Source $Quality --player $ENV:MEDIA_PLAYER --player-continuous-http
+  livestreamer tv.majorleaguegaming.com/channel/$Source $Quality --player $ENV:MEDIA_PLAYER --player-continuous-http
 }
 
 function RTMP
