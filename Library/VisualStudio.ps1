@@ -6,7 +6,8 @@ $VISUAL_STUDIO = @{
 
 function Set-VisualStudio
 {
-  param(
+  Param
+  (
     [Parameter(Mandatory, HelpMessage = 'Enter Visual Studio version as 2010, 2012, or 2013')]
     [ValidateSet(2010, 2012, 2013)]
     [int]$Version,
