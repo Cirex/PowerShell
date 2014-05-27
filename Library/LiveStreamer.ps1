@@ -34,8 +34,6 @@ function RTMP
   (
     [Parameter(Mandatory, HelpMessage = 'rtmp://<source>')]
     [string]$Source,
-
-    [Parameter]
     [string]$Quality = 'best'
   )
 
